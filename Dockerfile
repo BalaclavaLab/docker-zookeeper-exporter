@@ -1,4 +1,4 @@
-FROM golang:1.10-alpine3.8
+FROM golang:1.13.0-alpine3.10
 
 RUN apk add --no-cache git upx \
     && go get -u -ldflags "-s -w" github.com/pwaller/goupx \
@@ -6,7 +6,7 @@ RUN apk add --no-cache git upx \
     && goupx bin/zk-exporter
 
 
-FROM alpine:3.8
+FROM alpine:3.10
 
 COPY --from=0 /go/bin/zk-exporter /bin/zk-exporter
 
